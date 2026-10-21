@@ -1,0 +1,23 @@
+{
+  "name": "flash-guard-capstone-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avu-4/Flash-Guard-Capstone-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/avu-4/Flash-Guard-Capstone-Project/issues"
+  },
+  "homepage": "https://github.com/avu-4/Flash-Guard-Capstone-Project#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5"
+  }
+}
