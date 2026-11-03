@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "cucumber-js",
+    "test:baseline": "cucumber-js --tags \"not @defect\"",
+    "test:smoke": "cucumber-js --tags @smoke",
+    "test:positive": "cucumber-js --tags @positive",
+    "test:boundary" : "cucumber-js --tags @boundary"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/avu-4/Flash-Guard-Capstone-Project.git"
@@ -17,7 +23,16 @@
   },
   "homepage": "https://github.com/avu-4/Flash-Guard-Capstone-Project#readme",
   "devDependencies": {
+    "@cucumber/cucumber": "^13.3.0",
     "@playwright/test": "^1.64.1",
-    "@types/node": "^26.6.5"
+    "@types/mssql": "^12.3.0",
+    "@types/node": "^26.6.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "mssql": "^12.7.13"
   }
 }
