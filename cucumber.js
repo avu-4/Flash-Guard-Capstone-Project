@@ -1,10 +1,13 @@
 module.exports = {
   default: {
-    paths: ['tests/ui/features/**/*.feature'],
+    paths: [
+      'tests/ui/features/**/*.feature',
+      'tests/ui/feature/**/*.feature'
+    ],
 
     requireModule: [
       'dotenv/config',
-      'ts-node/register'
+      'tsx/cjs'
     ],
 
     require: [
@@ -22,4 +25,3 @@ module.exports = {
     publishQuiet: true
   }
 };
-
