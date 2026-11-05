@@ -21,12 +21,17 @@ const seedFile = path.resolve(
   "../testData/99-reset-and-seed.sql"
 );
 
-// The active seed file must insert four transactions.
 export const SEEDED_TRANSACTIONS = 4;
 
 async function withPool<T>(
   fn: (pool: sql.ConnectionPool) => Promise<T>
 ): Promise<T> {
+  if (dbConfig.database !== "FlashGuard") {
+    throw new Error(
+      `Database access blocked: expected FlashGuard, got ${dbConfig.database}`
+    );
+  }
+
   const pool = await new sql.ConnectionPool(dbConfig).connect();
 
   try {
@@ -37,6 +42,12 @@ async function withPool<T>(
 }
 
 export async function resetDatabase(): Promise<void> {
+  if (dbConfig.database !== "FlashGuard") {
+    throw new Error(
+      `Database reset blocked: expected FlashGuard, got ${dbConfig.database}`
+    );
+  }
+
   const batches = readFileSync(seedFile, "utf8")
     .split(/^\s*GO\s*$/gim)
     .map((batch) => batch.trim())

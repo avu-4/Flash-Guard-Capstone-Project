@@ -1,7 +1,11 @@
 USE FlashGuard;
 GO
 
+-- Use the FlashGuard database connection configured in db.ts.
+-- Delete child records before parent records.
+
 DELETE FROM dbo.ledger_entries;
+DELETE FROM dbo.payment_methods;
 DELETE FROM dbo.transactions;
 DELETE FROM dbo.recipients;
 DELETE FROM dbo.audit_log;

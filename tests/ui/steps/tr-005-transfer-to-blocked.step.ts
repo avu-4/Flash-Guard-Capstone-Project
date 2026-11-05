@@ -1,6 +1,6 @@
 
 import { Given, When, Then } from "@cucumber/cucumber";
-import { FlashGuardWorld } from "../world/world";
+import { FlashWorld } from '../../../src/support/world';
 import {
   setAccountActive,
   setBlacklistStatus,
@@ -12,7 +12,7 @@ import { expect } from "@playwright/test";
 
 Given(
   "the recipient account is inactive",
-  async function (this: FlashGuardWorld) {
+  async function (this: FlashWorld) {
     await setAccountActive("Charlie Frozen", false);
   }
 );
@@ -20,7 +20,7 @@ Given(
 Given(
   "the recipient {string} has blacklist status {string}",
   async function (
-    this: FlashGuardWorld,
+    this: FlashWorld,
     recipientName: string,
     status: string
   ) {
@@ -31,7 +31,7 @@ Given(
 When(
   "I identify the recipient as {string}",
   async function (
-    this: FlashGuardWorld,
+    this: FlashWorld,
     recipient: string
   ) {
     await selectRecipient(this.page, recipient);
@@ -40,7 +40,7 @@ When(
 
 When(
   "I confirm the transfer",
-  async function (this: FlashGuardWorld) {
+  async function (this: FlashWorld) {
     const button = this.page.getByRole("button", {
       name: /Confirm & Transfer/,
     });
@@ -52,7 +52,7 @@ When(
 Then(
   "an error notification is displayed with the message {string}",
   async function (
-    this: FlashGuardWorld,
+    this: FlashWorld,
     message: string
   ) {
     await expect(this.page.getByText(message)).toBeVisible();
@@ -61,7 +61,7 @@ Then(
 
 Then(
   "no transfer is created",
-  async function (this: FlashGuardWorld) {
+  async function (this: FlashWorld) {
     expect(await countTransactions()).toBe(
       SEEDED_TRANSACTIONS
     );
