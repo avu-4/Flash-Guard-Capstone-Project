@@ -1,0 +1,10 @@
+[
+    {
+        "method" : "POST",
+        "url" : "http://localhost:4000/transactions/transfer/999/authorize"
+    },
+    {   
+        "status code" : 400,
+        "message": "Only pending transactions can be authorized"
+    }
+]

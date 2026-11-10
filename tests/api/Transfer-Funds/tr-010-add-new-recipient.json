@@ -1,0 +1,14 @@
+[
+    {
+        "method" : "POST",
+        "url" : "http://localhost:4000/recipients"
+    },
+
+    {
+        "status code" : 201,
+        "id": 3,
+        "sender_account_id": 1,
+        "recipient_account_id": 2,
+        "blacklist_status": "clear"
+    }
+]

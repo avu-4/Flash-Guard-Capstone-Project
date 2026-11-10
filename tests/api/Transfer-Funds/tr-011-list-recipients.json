@@ -1,0 +1,30 @@
+[
+    {
+        "method" : "GET",
+        "url" : "http://localhost:4000/recipients"
+    },
+
+    [
+        {
+            "status code" : 200
+        },
+        {   
+            "id": 1,
+            "sender_account_id": 1,
+            "recipient_account_id": 2,
+            "blacklist_status": "clear"
+        },
+        {
+            "id": 2,
+            "sender_account_id": 1,
+            "recipient_account_id": 3,
+            "blacklist_status": "blocked"
+        },
+        {
+            "id": 3,
+            "sender_account_id": 1,
+            "recipient_account_id": 2,
+            "blacklist_status": "clear"
+        }
+    ]
+]

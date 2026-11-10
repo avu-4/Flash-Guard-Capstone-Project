@@ -1,0 +1,113 @@
+[
+    {
+        "method" : "GET",
+        "url" : "http://localhost:4000/transactions/history"
+    },
+
+    
+    [
+    {
+        "status code" : 200
+    },
+    {   
+    
+        "id": 1182,
+        "sender_account_id": 1,
+        "recipient_account_id": 2,
+        "transaction_type": "transfer",
+        "service_type": null,
+        "service_network": null,
+        "service_phone_number": null,
+        "transaction_kind": "transfer",
+        "amount": 1150,
+        "status": "completed",
+        "created_at": "2026-11-10T13:13:26.791Z",
+        "compliance_flag": null
+    },
+    {
+        "id": 1181,
+        "sender_account_id": 1,
+        "recipient_account_id": 2,
+        "transaction_type": "transfer",
+        "service_type": null,
+        "service_network": null,
+        "service_phone_number": null,
+        "transaction_kind": "transfer",
+        "amount": 2500,
+        "status": "completed",
+        "created_at": "2026-11-10T13:10:58.310Z",
+        "compliance_flag": null
+    },
+    {
+        "id": 1180,
+        "sender_account_id": 1,
+        "recipient_account_id": 2,
+        "transaction_type": "transfer",
+        "service_type": null,
+        "service_network": null,
+        "service_phone_number": null,
+        "transaction_kind": "transfer",
+        "amount": 250,
+        "status": "cancelled",
+        "created_at": "2026-11-10T12:17:46.498Z",
+        "compliance_flag": null
+    },
+    {
+        "id": 4,
+        "sender_account_id": 2,
+        "recipient_account_id": 1,
+        "transaction_type": "transfer",
+        "service_type": null,
+        "service_network": null,
+        "service_phone_number": null,
+        "transaction_kind": "transfer",
+        "amount": 5000,
+        "status": "pending",
+        "created_at": "2026-11-10T07:52:36.405Z",
+        "compliance_flag": null
+    },
+    {
+        "id": 3,
+        "sender_account_id": 1,
+        "recipient_account_id": 3,
+        "transaction_type": "transfer",
+        "service_type": null,
+        "service_network": null,
+        "service_phone_number": null,
+        "transaction_kind": "transfer",
+        "amount": 15000,
+        "status": "rejected",
+        "created_at": "2026-11-10T07:49:36.405Z",
+        "compliance_flag": "aml"
+    },
+    {
+        "id": 2,
+        "sender_account_id": 1,
+        "recipient_account_id": 2,
+        "transaction_type": "transfer",
+        "service_type": null,
+        "service_network": null,
+        "service_phone_number": null,
+        "transaction_kind": "transfer",
+        "amount": 100,
+        "status": "completed",
+        "created_at": "2026-11-10T07:44:36.405Z",
+        "compliance_flag": null
+    },
+    {
+        "id": 1,
+        "sender_account_id": 1,
+        "recipient_account_id": 2,
+        "transaction_type": "transfer",
+        "service_type": null,
+        "service_network": null,
+        "service_phone_number": null,
+        "transaction_kind": "transfer",
+        "amount": 250,
+        "status": "completed",
+        "created_at": "2026-11-10T07:24:36.405Z",
+        "compliance_flag": null
+    }
+    ]
+    
+]

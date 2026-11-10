@@ -1,0 +1,15 @@
+[
+    {
+        "method" : "PUT",
+        "url" : "http://localhost:4000/recipients/3",
+        "blacklistStatus": "clear"
+    },
+
+    {
+        "status" : 200,
+        "id": 3,
+        "sender_account_id": 1,
+        "recipient_account_id": 2,
+        "blacklist_status": "clear"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "method" : "POST",
+        "url" : "http://localhost:4000/transactions/transfer",
+        "senderAccountId": 1,
+        "recipientAccountId": 2,
+        "amount": -250
+    },
+
+    {   
+        "status code" : 400,
+        "message": "Invalid transfer payload"
+    }
+]
