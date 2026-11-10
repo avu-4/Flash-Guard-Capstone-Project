@@ -184,3 +184,42 @@ export async function countTransactions(): Promise<number> {
     return result.recordset[0].c as number;
   });
 }
+
+// ---------- read helpers added for the TR-007 (OTP) steps ----------
+
+export async function getBalance(fullName: string): Promise<string> {
+  return withPool(async (pool) => {
+    const result = await pool
+      .request()
+      .input("name", sql.NVarChar, fullName)
+      .query(`
+        SELECT balance
+        FROM dbo.accounts
+        WHERE full_name = @name
+      `);
+
+    if (result.recordset.length === 0) {
+      throw new Error(`Account not found: ${fullName}`);
+    }
+
+    return Number(result.recordset[0].balance).toFixed(2);
+  });
+}
+
+export async function getLatestTransactionStatus(): Promise<string> {
+  return withPool(async (pool) => {
+    const result = await pool
+      .request()
+      .query(`
+        SELECT TOP 1 status
+        FROM dbo.transactions
+        ORDER BY id DESC
+      `);
+
+    if (result.recordset.length === 0) {
+      throw new Error("No transactions found");
+    }
+
+    return String(result.recordset[0].status).toLowerCase();
+  });
+}
