@@ -21,12 +21,17 @@ const seedFile = path.resolve(
   "../testData/99-reset-and-seed.sql"
 );
 
-// The active seed file must insert four transactions.
 export const SEEDED_TRANSACTIONS = 4;
 
 async function withPool<T>(
   fn: (pool: sql.ConnectionPool) => Promise<T>
 ): Promise<T> {
+  if (dbConfig.database !== "FlashGuard") {
+    throw new Error(
+      `Database access blocked: expected FlashGuard, got ${dbConfig.database}`
+    );
+  }
+
   const pool = await new sql.ConnectionPool(dbConfig).connect();
 
   try {
@@ -37,6 +42,12 @@ async function withPool<T>(
 }
 
 export async function resetDatabase(): Promise<void> {
+  if (dbConfig.database !== "FlashGuard") {
+    throw new Error(
+      `Database reset blocked: expected FlashGuard, got ${dbConfig.database}`
+    );
+  }
+
   const batches = readFileSync(seedFile, "utf8")
     .split(/^\s*GO\s*$/gim)
     .map((batch) => batch.trim())
@@ -171,5 +182,44 @@ export async function countTransactions(): Promise<number> {
       .query("SELECT COUNT(*) AS c FROM dbo.transactions");
 
     return result.recordset[0].c as number;
+  });
+}
+
+// ---------- read helpers added for the TR-007 (OTP) steps ----------
+
+export async function getBalance(fullName: string): Promise<string> {
+  return withPool(async (pool) => {
+    const result = await pool
+      .request()
+      .input("name", sql.NVarChar, fullName)
+      .query(`
+        SELECT balance
+        FROM dbo.accounts
+        WHERE full_name = @name
+      `);
+
+    if (result.recordset.length === 0) {
+      throw new Error(`Account not found: ${fullName}`);
+    }
+
+    return Number(result.recordset[0].balance).toFixed(2);
+  });
+}
+
+export async function getLatestTransactionStatus(): Promise<string> {
+  return withPool(async (pool) => {
+    const result = await pool
+      .request()
+      .query(`
+        SELECT TOP 1 status
+        FROM dbo.transactions
+        ORDER BY id DESC
+      `);
+
+    if (result.recordset.length === 0) {
+      throw new Error("No transactions found");
+    }
+
+    return String(result.recordset[0].status).toLowerCase();
   });
 }

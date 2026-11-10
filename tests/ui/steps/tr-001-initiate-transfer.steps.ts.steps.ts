@@ -1,14 +1,14 @@
 import {expect} from '@playwright/test';
 import { Given, When, Then, DataTable, } from '@cucumber/cucumber';
-import { FlashGuardWorld } from '../world/world';
+import { FlashWorld } from '../../../src/support/world';
 import { toPlainAmount, transferMoney } from '../transferMoney/transferMoney';
 
-Then('a success notification is displayed confirming the transfer was created', async function (this : FlashGuardWorld) {
+Then('a success notification is displayed confirming the transfer was created', async function (this : FlashWorld) {
   await expect(
   this.page.getByText(/^Transfer #\d+ created successfully!$/)).toBeVisible();
 });
 
-Then("the transfer form is cleared", async function (this: FlashGuardWorld) {
+Then("the transfer form is cleared", async function (this: FlashWorld) {
   await expect(this.page.getByPlaceholder("0.00")).toHaveValue("");
   await expect(this.page.getByPlaceholder("e.g. Invoice INV-2024-001")).toHaveValue("");
 });
@@ -20,7 +20,7 @@ const ACCOUNT_ID: Record<string, number> = {
 
 Then(
   "the transfer {string} from {string} to {string} appears in my transaction history with status {string}",
-  async function (this: FlashGuardWorld, amount: string, from: string, to: string, status: string) {
+  async function (this: FlashWorld, amount: string, from: string, to: string, status: string) {
     await this.page.goto("/history");
     const route = `Acct ${ACCOUNT_ID[from]} to ${ACCOUNT_ID[to]}`;
 
@@ -44,4 +44,3 @@ Then(
     await expect.poll(countMatches).toBe(1);
   }
 );
-

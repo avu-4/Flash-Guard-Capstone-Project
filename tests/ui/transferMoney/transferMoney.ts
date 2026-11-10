@@ -16,19 +16,20 @@ export async function selectRecipient(
   page: Page,
   beneficiary: string
 ): Promise<void> {
-  const recipient = page
-    .locator("span.font-label-md.text-label-md.text-primary")
-    .filter({ hasText: beneficiary });
+  // The list is filtered by the search box, and a pre-selected recipient fills
+  // that box, so search for the one we want first
+  await page.getByPlaceholder(/Search saved beneficiaries/).fill(beneficiary);
 
-  const count = await recipient.count();
-
-  if (count === 0) {
+  const card = page.locator("div.cursor-pointer").filter({ hasText: beneficiary }).first();
+  try {
+    await card.waitFor({ state: "visible", timeout: 10_000 });
+  } catch {
+    const listed = await page.locator("div.cursor-pointer").allTextContents();
     throw new Error(
-      `Saved recipient not found: ${beneficiary}`
+      `Saved recipient not found: ${beneficiary}. Cards on the page: [${listed.join(" | ")}]`
     );
   }
-
-  await recipient.first().click();
+  await card.click();
 }
 
 export async function enterAmount(
