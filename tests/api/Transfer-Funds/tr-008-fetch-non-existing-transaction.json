@@ -1,0 +1,11 @@
+[
+    {
+        "method" : "GET",
+        "url" : "http://localhost:4000/transactions/999"
+    },
+
+    {
+        "status code" : 404,
+        "message": "Transaction not found"
+    }
+]
