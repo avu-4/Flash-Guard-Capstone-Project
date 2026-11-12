@@ -1,7 +1,7 @@
 import {expect} from '@playwright/test';
 import { Given, When, Then, DataTable, } from '@cucumber/cucumber';
-import { FlashWorld } from '../../../src/support/world';
-import { toPlainAmount, transferMoney, enterAmount, selectRecipient, selectSender } from '../transferMoney/transferMoney';
+import { FlashWorld } from '../../../../src/support/world';
+import { toPlainAmount, transferMoney, enterAmount, selectRecipient, selectSender } from '../../transferMoney/transferMoney';
 
 //Background
 Given(

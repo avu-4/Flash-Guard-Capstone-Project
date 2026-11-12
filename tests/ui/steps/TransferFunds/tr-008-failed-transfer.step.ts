@@ -1,6 +1,6 @@
 import { Given, Then } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { FlashWorld } from "../../../src/support/world";
+import { FlashWorld } from "../../../../src/support/world";
 
 const toast = (w: FlashWorld, text?: string | RegExp) => {
   const status = w.page.getByRole("status");

@@ -1,12 +1,12 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { FlashWorld } from "../../../src/support/world";
+import { FlashWorld } from "../../../../src/support/world";
 import {
   setAccountActive,
   setBlacklistStatus,
   countTransactions,
   SEEDED_TRANSACTIONS,
-} from "../testData/db";
+} from "../../testData/db";
 
 // ---------- Given: the three <recipient_setup> sentences ----------
 
