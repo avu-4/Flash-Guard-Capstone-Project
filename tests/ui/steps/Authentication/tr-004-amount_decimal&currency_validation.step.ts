@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 import { When, Then } from "@cucumber/cucumber";
-import { FlashWorld } from '../../../src/support/world';
+import { FlashWorld } from '../../../../src/support/world';
 
 const amountField = (w: FlashWorld) => w.page.getByPlaceholder("0.00");
 

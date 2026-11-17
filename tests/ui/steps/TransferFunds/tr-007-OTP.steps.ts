@@ -1,7 +1,7 @@
 import { When, Then } from "@cucumber/cucumber";
 import { expect, Page } from "@playwright/test";
-import { FlashWorld } from "../../../src/support/world";
-import { getBalance, getLatestTransactionStatus } from "../testData/db";
+import { FlashWorld } from "../../../../src/support/world";
+import { getBalance, getLatestTransactionStatus } from "../../testData/db";
 
 const MOBILE_URL = process.env.MOBILE_URL ?? "http://localhost:3001";
 

@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["playwright.config.ts", "src/**/*.ts", "tests/**/*.ts"]
+  "include": ["playwright.config.ts", "src/**/*.ts", "tests/**/*.ts", "tests/ui/steps/TransferFunds/tr-001-initiate-transfer.steps.ts.steps.ts"]
 }

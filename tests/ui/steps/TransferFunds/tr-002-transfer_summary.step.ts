@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test";
 import { When, Then } from "@cucumber/cucumber";
-import { FlashWorld } from '../../../src/support/world';
-import {  toPlainAmount } from "../transferMoney/transferMoney";
+import { FlashWorld } from '../../../../src/support/world';
+import {  toPlainAmount } from "../../transferMoney/transferMoney";
 
 // The review panel shows each value right after its label
 const reviewValue = (w: FlashWorld, label: string) =>
