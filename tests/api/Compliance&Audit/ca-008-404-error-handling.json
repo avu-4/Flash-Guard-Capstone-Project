@@ -1,0 +1,21 @@
+[
+    {
+        "method" : "GET",
+        "url" : "http://localhost:4000/this-endpoint-does-not-exist"
+    },
+
+    {   
+        "status code" : 404,
+        "<!DOCTYPE html>
+        <html lang='en'>
+        <head>
+        <meta charset='utf-8'>
+        <title>Error</title>
+        </head>
+        <body>
+        <pre>Cannot GET /this-endpoint-does-not-exist</pre>
+        </body>
+        </html>"
+
+    }
+]
