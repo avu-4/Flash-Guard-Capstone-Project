@@ -1,0 +1,39 @@
+{
+    "testCaseId": "ACC-API-005",
+    "testCaseName": "Update Account Profile",
+ 
+    "request": {
+        "method": "PUT",
+        "endpoint": "/accounts/1",
+        "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer <token>"
+        },
+        "payload": {
+            "fullName": "Alice Updated"
+        }
+    },
+ 
+    "expectedResponse": {
+        "statusCode": 200,
+        "body": {
+            "id": 1,
+            "full_name": "Alice Updated",
+            "balance": 10000,
+            "is_active": true
+        }
+    },
+ 
+    "actualResponse": {
+        "statusCode": 200,
+        "body": {
+            "id": 1,
+            "email": "alice@flashguard.local",
+            "full_name": "Alice Updated",
+            "balance": 10000,
+            "is_active": true
+        }
+    },
+ 
+    "result": "PASS"
+}

@@ -1,0 +1,36 @@
+{
+    "testCaseId": "ACC-API-002",
+    "testCaseName": "Account authorisation",
+    "request": {
+        "method": "GET",
+        "endpoint": "/accounts/1",
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    },
+    "expectedResponse": {
+        "statusCode": [403, 404],
+        "body": {
+            "accountInformationExposed": false,
+            "email": null,
+            "balance": null
+        },
+        "description": "Alice must not access Bob's private account information."
+    },
+    "actualResponse": {
+        "statusCode": 200,
+        "body": {
+            "id": 2,
+            "email": "bob@flashguard.local",
+            "full_name": "Bob Wallet",
+            "balance": 2500,
+            "is_active": true
+        }
+    },
+    "testResult": "FAIL",
+    "defect": {
+        "identified": true,
+        "type": "Broken Object Level Authorization (BOLA)",
+        "description": "Alice was able to retrieve Bob's private account information."
+    }
+}
