@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { FlashWorld } from '../../../src/support/world';
-import { config } from '../../../src/support/config';
+import { FlashWorld } from '../../../../src/support/world';
+import { config } from '../../../../src/support/config';
 
 
 // ============================================================

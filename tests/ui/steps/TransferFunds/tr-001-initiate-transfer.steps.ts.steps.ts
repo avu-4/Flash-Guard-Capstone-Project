@@ -1,7 +1,7 @@
 import {expect} from '@playwright/test';
 import { Given, When, Then, DataTable, } from '@cucumber/cucumber';
-import { FlashWorld } from '../../../src/support/world';
-import { toPlainAmount, transferMoney } from '../transferMoney/transferMoney';
+import { FlashWorld } from '../../../../src/support/world';
+import { toPlainAmount, transferMoney } from '../../transferMoney/transferMoney';
 
 Then('a success notification is displayed confirming the transfer was created', async function (this : FlashWorld) {
   await expect(

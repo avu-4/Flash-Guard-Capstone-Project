@@ -1,8 +1,8 @@
 import { Then, When } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { FlashWorld } from "../../../src/support/world";
-import { selectSender } from "../transferMoney/transferMoney";
-import { countTransactions, SEEDED_TRANSACTIONS } from "../testData/db";
+import { FlashWorld } from "../../../../src/support/world";
+import { selectSender } from "../../transferMoney/transferMoney";
+import { countTransactions, SEEDED_TRANSACTIONS } from "../../testData/db";
 
 const searchBox = (w: FlashWorld) => w.page.getByPlaceholder(/Search saved beneficiaries/);
 const confirmButton = (w: FlashWorld) => w.page.getByRole("button", { name: /Confirm & Transfer/ });
