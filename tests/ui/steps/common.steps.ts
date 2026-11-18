@@ -16,8 +16,12 @@ Given(
 );
 
 //Scenario: Initiate a transfer to a valid recipient
-Given('I open the Transfers page', async function(this: FlashWorld){
-  await this.page.goto('/transfers')
+Given("I open the Transfers page", async function (this: FlashWorld) {
+  await this.page.goto("/transfers");
+  await expect(this.page.getByRole("heading", { name: "From Account" })).toBeVisible();
+  await expect(
+    this.page.locator("span.font-label-md.text-label-md.text-primary").first()
+  ).toBeVisible();
 });
 
 When('I submit a transfer with the following details:', async function (this : FlashWorld, details : DataTable) {

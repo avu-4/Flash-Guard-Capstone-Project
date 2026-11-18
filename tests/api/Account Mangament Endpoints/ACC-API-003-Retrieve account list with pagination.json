@@ -1,0 +1,104 @@
+{
+    "testCaseId": "ACC-API-003",
+    "testCaseName": "Retrieve Accounts with Pagination",
+ 
+    "request": {
+        "method": "GET",
+        "endpoint": "/accounts",
+        "queryParams": {
+            "page": 1,
+            "limit": 2
+        },
+        "headers": {
+            "Accept": "application/json",
+            "Authorization": "Bearer <Alice's access token - redacted>"
+        },
+        "payload": null
+    },
+ 
+    "expectedResponse": {
+        "statusCode": 200,
+        "body": [
+            {
+                "id": 1,
+                "email": "alice@flashguard.local",
+                "full_name": "Alice Ledger",
+                "balance": 10000,
+                "is_active": true
+            },
+            {
+                "id": 2,
+                "email": "bob@flashguard.local",
+                "full_name": "Bob Wallet",
+                "balance": 2500,
+                "is_active": true
+            }
+        ],
+        "description": "The API should return no more than two account records for page 1."
+    },
+ 
+    "actualResponse": {
+        "statusCode": 200,
+        "body": [
+            {
+                "id": 1,
+                "email": "alice@flashguard.local",
+                "full_name": "Alice Ledger",
+                "balance": 10000,
+                "is_active": true
+            },
+            {
+                "id": 2,
+                "email": "bob@flashguard.local",
+                "full_name": "Bob Wallet",
+                "balance": 2500,
+                "is_active": true
+            },
+            {
+                "id": 3,
+                "email": "charlie@flashguard.local",
+                "full_name": "Charlie Frozen",
+                "balance": 450,
+                "is_active": false
+            },
+            {
+                "id": 4,
+                "email": "services@flashguard.local",
+                "full_name": "FlashGuard Mobile Services",
+                "balance": 0,
+                "is_active": true
+            },
+            {
+                "id": 5,
+                "email": "asemahle@flashguard.local",
+                "full_name": "Asemahle Mpatho",
+                "balance": 0,
+                "is_active": true
+            },
+            {
+                "id": 7,
+                "email": "Dikela@flashguard.local",
+                "full_name": "Dikela Mpatho",
+                "balance": 0,
+                "is_active": true
+            },
+            {
+                "id": 9,
+                "email": "emily@flashguard.local",
+                "full_name": "Asemahle Mpatho",
+                "balance": 0,
+                "is_active": true
+            }
+        ],
+        "recordCount": 7
+    },
+ 
+    "testResult": {
+        "status": "Failed",
+        "expectedRecordCount": 2,
+        "actualRecordCount": 7,
+        "defectDescription": "The API returned seven account records instead of respecting the requested pagination limit of two.",
+        "finding": "Pagination does not appear to be functioning as expected.",
+        "remarks": "Confirm that page and limit are the documented pagination parameters before formally raising the defect."
+    }
+}
