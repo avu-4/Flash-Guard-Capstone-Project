@@ -71,7 +71,7 @@ test.describe('FlashGuard - Payment Method Management', () => {
 
 
 
-import { test, expect } from '@playwright/test';
+/*import { test, expect } from '@playwright/test';
 
 test.describe('FlashGuard - Payment Method Management', () => {
 
@@ -87,7 +87,7 @@ test.describe('FlashGuard - Payment Method Management', () => {
       name: /sign in|login|log in/i
     }).click();
 
-    await page.waitForURL('**/dashboard');
+  ;
 
     // Navigate directly to Payment Methods
     await page.goto('http://localhost:3000/payment-methods');
@@ -96,18 +96,18 @@ test.describe('FlashGuard - Payment Method Management', () => {
       page.getByRole('heading', { name: 'Payment Methods' })
     ).toBeVisible();
 
-  });
+  });*/
 
-  test('FG-AM-003: Add and remove payment method', async ({ page }) => {
+  /*test('FG-AM-003: Add and remove payment method', async ({ page }) => {
 //click on button
 await page.getByRole('button', { name: 'Add Payment Method' }).click();
 
     // Fill in card details
    await page.getByPlaceholder('Card Number (16 digits)')
-  .fill('4111111111111111');
+  .fill('4123456789987456');
 
     await page.getByPlaceholder('Nickname (e.g., My Visa)')
-      .fill('Test Visa');
+      .fill('Avumile test');
 
     await page.getByPlaceholder('Expiry Date (MM/YY)')
       .fill('12/30');
@@ -121,22 +121,111 @@ await page.getByRole('button', { name: 'Add Payment Method' }).click();
     }).click();
 
     // Verify card was added
+  // Verify the newly added card
+const cardRow = page.getByRole('row').filter({
+  hasText: 'Avumile test'
+});
+
+await expect(cardRow).toBeVisible();
+
+console.log('PASS: Payment method added successfully.');
+
+  });
+
+})
+*/
+
+
+import { test, expect } from '@playwright/test';
+
+test.describe('FlashGuard - Payment Method Management', () => {
+
+  test.beforeEach(async ({ page }) => {
+
+    // Step 1: Login
+    await page.goto('http://localhost:3000/login');
+
+    await page.getByLabel(/email/i)
+      .fill('alice@flashguard.local');
+
+    await page.getByLabel(/password/i)
+      .fill('offline-demo');
+
+    await page.getByRole('button', {
+      name: /sign in|login|log in/i
+    }).click();
+
+    await page.waitForURL('**/dashboard');
+
+    // Step 2: Navigate to Payment Methods
+    await page.goto('http://localhost:3000/payment-methods');
+
+    await expect(
+      page.getByRole('heading', { name: 'Payment Methods' })
+    ).toBeVisible();
+
+  });
+
+  test('FG-AM-003: Add and remove payment method', async ({ page }) => {
+
+    // Step 3: Click Add Payment Method
+    await page.getByRole('button', {
+      name: 'Add Payment Method'
+    }).click();
+
+    // Step 4: Fill in card details
+    await page.getByPlaceholder('Card Number (16 digits)')
+      .fill('4123456789987456');
+
+    await page.getByPlaceholder('Nickname (e.g., My Visa)')
+      .fill('Avumile test');
+
+    await page.getByPlaceholder('Expiry Date (MM/YY)')
+      .fill('12/30');
+
+    await page.getByPlaceholder('CVV')
+      .fill('123');
+
+    // Step 5: Add card
+    await page.getByRole('button', {
+      name: 'Add Card'
+    }).click();
+
+    // Step 6: Verify card was added
     const cardRow = page.getByRole('row').filter({
-      hasText: 'Test Visa'
+      hasText: 'Avumile test'
     });
+
+    await expect(cardRow).toHaveCount(1);
 
     await expect(cardRow).toBeVisible();
 
     console.log('PASS: Payment method added successfully.');
 
-    // Inspect removal controls
-    console.log(
-      'Available buttons:',
-      await cardRow.getByRole('button').allTextContents()
-    );
+    // Step 7: Find and click Remove button
+    const removeButton = cardRow.getByRole('button', {
+      name: /remove|delete/i
+    });
+
+    await expect(removeButton).toBeVisible();
+
+    await removeButton.click();
+
+    // Step 8: Confirm removal if confirmation appears
+    const confirmButton = page.getByRole('button', {
+      name: /confirm|yes|remove|delete/i
+    });
+
+    if (await confirmButton.isVisible().catch(() => false)) {
+      await confirmButton.click();
+    }
+
+    // Step 9: Verify card was removed
+    await expect(cardRow).toHaveCount(0);
+
+    console.log('PASS: Payment method removed successfully.');
 
   });
 
 });
-
 
