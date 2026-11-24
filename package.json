@@ -6,15 +6,11 @@
   "scripts": {
     "test": "cucumber-js",
     "test:ui": "cucumber-js",
-
     "test:smoke": "cucumber-js --tags '@smoke'",
     "test:ui:smoke": "cucumber-js --tags '@smoke'",
-
     "test:ui:auth": "cucumber-js --tags '@authentication'",
     "test:ui:negative": "cucumber-js --tags '@negative'",
-
     "test:ui:transfers": "cucumber-js --tags '@transfers'",
-
     "test:baseline": "cucumber-js --tags 'not @defect'",
     "test:positive": "cucumber-js --tags '@positive'",
     "test:boundary": "cucumber-js --tags '@boundary'"
@@ -37,7 +33,8 @@
     "@types/node": "^26.6.5",
     "ts-node": "^10.9.2",
     "tsx": "^4.23.15",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "webdriverio": "^10.1.0"
   },
   "dependencies": {
     "dotenv": "^18.0.9",
