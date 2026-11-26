@@ -1,99 +1,189 @@
-import { Then } from '@cucumber/cucumber';
+
+import { Given, When, Then } from '@cucumber/cucumber';
 import assert from 'node:assert/strict';
- 
+
 import { LoginPage } from '../auth_pages/LoginPage';
 import type { MobileWorld } from '../auth_support/world';
- 
-// Initialise LoginPage using the active Appium session.
+
+// Get the active login page.
 function getLoginPage(world: MobileWorld): LoginPage {
   assert.ok(
     world.driver,
     'Appium driver has not been initialised'
   );
- 
+
   return new LoginPage(world.driver);
 }
- 
-// TC-MOB-AUTH-001: Verify welcome heading.
-Then(
-  'the welcome heading should be visible',
+
+// Read required credentials without hardcoding passwords.
+function getRequiredEnv(name: string): string {
+  const value = process.env[name];
+
+  assert.ok(
+    value && value.trim().length > 0,
+    `Missing environment variable: ${name}`
+  );
+
+  return value;
+}
+
+// Verify the login screen before executing the test.
+Given(
+  'the mobile login screen is displayed',
   async function (this: MobileWorld) {
     const page = getLoginPage(this);
- 
-    assert.equal(
-      await page.isVisible(page.welcomeHeading),
-      true,
-      'Welcome Back heading should be visible'
+
+    await page.verifyLoginScreen();
+  }
+);
+
+// Enter valid Alice credentials.
+When(
+  'the user enters valid credentials',
+  async function (this: MobileWorld) {
+    const page = getLoginPage(this);
+
+    await page.enterEmail(
+      getRequiredEnv('TEST_USER_A_EMAIL')
+    );
+
+    await page.enterPassword(
+      getRequiredEnv('TEST_USER_A_PASSWORD')
     );
   }
 );
- 
-// Verify email input field.
-Then(
-  'the email field should be visible',
+
+// Enter intentionally invalid credentials.
+When(
+  'the user enters invalid credentials',
   async function (this: MobileWorld) {
     const page = getLoginPage(this);
- 
-    assert.equal(
-      await page.isVisible(page.emailField),
-      true,
-      'Email / ID Number field should be visible'
+
+    await page.enterEmail(
+      getRequiredEnv('INVALID_USER_EMAIL')
+    );
+
+    await page.enterPassword(
+      getRequiredEnv('INVALID_USER_PASSWORD')
     );
   }
 );
- 
-// Verify password input field.
-Then(
-  'the password field should be visible',
+
+// Tap the Sign In button.
+When(
+  'the user taps the sign in button',
   async function (this: MobileWorld) {
     const page = getLoginPage(this);
- 
-    assert.equal(
-      await page.isVisible(page.passwordField),
-      true,
-      'Password field should be visible'
+
+    await page.tapSignIn();
+  }
+);
+
+// Dismiss the welcome-back dialog and verify the dashboard.
+Then(
+  'the dashboard should be displayed',
+  async function (this: MobileWorld) {
+    const page = getLoginPage(this);
+
+    await page.tapWelcomeDialogOk();
+
+    await page.verifyDashboard();
+  }
+);
+
+// Verify invalid credentials are rejected.
+Then(
+  'an authentication error should be displayed',
+  async function (this: MobileWorld) {
+    const page = getLoginPage(this);
+
+    await page.verifyAuthenticationError();
+
+    await page.dismissAuthenticationError();
+
+    await page.verifyLoginScreen();
+
+    console.log(
+      'Invalid credentials rejected successfully. User remains on login screen.'
     );
   }
 );
- 
-// Verify Sign In button.
-Then(
-  'the sign in button should be visible',
+
+// Background the app for five minutes, then reopen it.
+When(
+  'the app is sent to the background for five minutes and reopened',
+  { timeout: 7 * 60 * 1000 },
   async function (this: MobileWorld) {
-    const page = getLoginPage(this);
- 
-    assert.equal(
-      await page.isVisible(page.signInButton),
-      true,
-      'Sign In button should be visible'
+    assert.ok(
+      this.driver,
+      'Appium driver has not been initialised'
     );
+
+    const appPackage = 'com.anonymous.flashguadmobileapp';
+
+    console.log('Sending FlashGuard to the background...');
+
+    // Send the app to the background without terminating it.
+    await this.driver.background(0);
+
+    // Wait five minutes, checking periodically that the app remains installed.
+    for (let interval = 1; interval <= 10; interval++) {
+      await this.driver.pause(30000);
+
+      // Keep the Appium session active without bringing the app forward.
+      assert.ok(
+        await this.driver.isAppInstalled(appPackage),
+        'FlashGuard app is no longer installed.'
+      );
+
+      if (interval % 2 === 0) {
+        console.log(
+          `Background wait completed: ${interval / 2} minute(s).`
+        );
+      }
+    }
+
+    console.log('Reopening FlashGuard...');
+
+    await this.driver.activateApp(appPackage);
+
+    await this.driver.pause(3000);
+
+    console.log('FlashGuard has been reopened.');
   }
 );
- 
-// Verify Forgot Password link.
+
+// Record the authentication state after reopening.
 Then(
-  'the forgot password link should be visible',
+  'the reopened app authentication state should be recorded',
   async function (this: MobileWorld) {
-    const page = getLoginPage(this);
- 
-    assert.equal(
-      await page.isVisible(page.forgotPasswordLink),
-      true,
-      'Forgot Password link should be visible'
+    assert.ok(
+      this.driver,
+      'Appium driver has not been initialised'
     );
-  }
-);
- 
-// Verify Create an Account link.
-Then(
-  'the create account link should be visible',
-  async function (this: MobileWorld) {
-    const page = getLoginPage(this);
- 
-    assert.equal(
-      await page.isVisible(page.createAccountLink),
-      true,
-      'Create an Account link should be visible'
-    );
+
+    const dashboard = await this.driver
+      .$('//*[@text="TOTAL NET WORTH"]')
+      .isDisplayed()
+      .catch(() => false);
+
+    const loginScreen = await this.driver
+      .$('//*[@text="Welcome Back"]')
+      .isDisplayed()
+      .catch(() => false);
+
+    if (dashboard) {
+      console.log(
+        'OBSERVATION: Dashboard is displayed after reopening. The user remains authenticated.'
+      );
+    } else if (loginScreen) {
+      console.log(
+        'OBSERVATION: Login screen is displayed after reopening. The user is no longer authenticated in the visible app state.'
+      );
+    } else {
+      assert.fail(
+        'Neither the dashboard nor the login screen was detected after reopening.'
+      );
+    }
   }
 );
