@@ -1,0 +1,136 @@
+[
+  {
+    "description": "  As a FlashGuard mobile user\n  I want to access the login screen\n  So that I can authenticate myself securely",
+    "elements": [
+      {
+        "description": "",
+        "id": "flashguard-mobile-authentication;tc-mob-auth-001---verify-the-mobile-login-screen",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "TC-MOB-AUTH-001 - Verify the mobile login screen",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 34470802500
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 191990899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "the welcome heading should be visible",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:18"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 182971199
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "the email field should be visible",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:32"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 200745199
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "the password field should be visible",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:46"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 118209599
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "the sign in button should be visible",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:60"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 148057399
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "the forgot password link should be visible",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:74"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 336237200
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "the create account link should be visible",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:88"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 972052299
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@authentication",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "flashguard-mobile-authentication",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "FlashGuard mobile authentication",
+    "tags": [
+      {
+        "name": "@authentication",
+        "line": 1
+      },
+      {
+        "name": "@smoke",
+        "line": 1
+      }
+    ],
+    "uri": "tests\\mobile\\features\\authentication.feature"
+  }
+]
