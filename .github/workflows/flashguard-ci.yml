@@ -37,4 +37,9 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Cucumber dry-run validation
+        env:
+          TEST_USER_A_EMAIL: ci-validation-a@example.invalid
+          TEST_USER_A_PASSWORD: ci-placeholder
+          TEST_USER_B_EMAIL: ci-validation-b@example.invalid
+          TEST_USER_B_PASSWORD: ci-placeholder
         run: npx cucumber-js --dry-run
