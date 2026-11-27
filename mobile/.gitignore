@@ -1,1 +1,3 @@
 .wdio/session/
+.wdio/session/
+.expo/
