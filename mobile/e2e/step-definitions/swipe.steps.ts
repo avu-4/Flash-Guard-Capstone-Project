@@ -12,11 +12,15 @@ async function getActiveItem(): Promise<string> {
         './/*[@clickable="true" and @content-desc!=""]'
     );
 
-    for (const card of cards) {
-        if (await card.isDisplayed()) {
-            return await card.getAttribute('content-desc');
+   for (const card of cards) {
+    if (await card.isDisplayed()) {
+        const description = await card.getAttribute('content-desc');
+
+        if (description) {
+            return description;
         }
     }
+}
 
     throw new Error('No visible carousel item found');
 }

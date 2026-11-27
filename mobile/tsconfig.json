@@ -23,9 +23,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "test/specs",
-    "wdio.conf.ts"
-  ],
+ "include": [
+  "test/specs",
+  "e2e/**/*.ts",
+  "wdio.conf.ts"
+],
   "extends": "expo/tsconfig.base"
 }

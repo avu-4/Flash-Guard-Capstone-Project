@@ -1,4 +1,4 @@
-async function login() {
+/*async function login() {
 
     const signIn = await $('~Sign In, ›');
 
@@ -58,5 +58,58 @@ describe('Mobile app suite', () => {
 
     });
 
-});
+});*/
 
+describe('Mobile app suite', () => {
+
+    it('TC-MOB-001 - Update Profile', async () => {
+
+        // Step 1: Launch application
+        await driver.activateApp(
+            'com.anonymous.flashguadmobileapp'
+        );
+
+        // Step 2: Login
+        const signIn = await $(
+            '//android.view.ViewGroup[starts-with(@content-desc,"Sign In,")]'
+        );
+
+        await signIn.waitForDisplayed({ timeout: 20000 });
+        await signIn.click();
+
+        const okButton = await $(
+            '//android.widget.Button[@text="OK"]'
+        );
+
+        await okButton.waitForDisplayed({ timeout: 15000 });
+        await okButton.click();
+
+        // Step 3: Open Account tab
+        const accountTab = await $('~PF, Account');
+
+        await accountTab.waitForDisplayed({ timeout: 20000 });
+        await accountTab.click();
+
+        // Step 4: Open profile settings
+        const settings = await $(
+            '//android.widget.TextView[@text="\u2699"]'
+        );
+
+        await settings.waitForDisplayed({ timeout: 10000 });
+        await settings.click();
+
+        // Step 5: Verify profile editing screen opens
+        // Known defect: Settings does not open the profile screen.
+        const editField = await $('//android.widget.EditText');
+
+        await editField.waitForDisplayed({
+            timeout: 15000,
+            timeoutMsg: 'DEFECT: Profile settings screen failed to open'
+        });
+
+        // Remaining profile update steps are blocked
+        // until the application defect is resolved.
+
+    });
+
+});
