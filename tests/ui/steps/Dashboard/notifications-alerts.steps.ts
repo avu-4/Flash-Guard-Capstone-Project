@@ -1,9 +1,10 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { FlashWorld } from '../../../src/support/world';
-import { resetDatabase } from '../testData/db';
-import { openTransferPage, submitTransfer } from '../hooks/helpers';
+import { FlashWorld } from '../../../../src/support/world';
 
+import { resetDatabase } from '../../testData/db';
+
+import { openTransferPage, submitTransfer } from '../../hooks/helpers';
 // Case-insensitive "contains" match, so small wording differences don't break the test.
 const contains = (text: string) =>
   new RegExp(text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');

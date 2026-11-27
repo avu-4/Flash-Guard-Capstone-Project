@@ -1,8 +1,8 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { FlashWorld } from '../../../src/support/world';
-import { timing, getCredentials, readNetWorthText, parseMoney, loginAndOpenDashboard } from '../hooks/helpers';
+import { FlashWorld } from '../../../../src/support/world';
 
+import { timing, getCredentials, readNetWorthText, parseMoney, loginAndOpenDashboard } from '../../hooks/helpers';
 // ---------- Given ----------
 
 // Shared by dashboard.feature and notifications.feature
