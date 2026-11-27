@@ -1,0 +1,13 @@
+[
+    {
+        "method" : "POST",
+        "url" : "http://localhost:4000/compliance-checks/validate",
+        "amount": 12000
+    },
+
+    {
+        "flagged": true,
+        "rule": "aml",
+        "message": "Manual review required for amount > 10000"
+    }
+]

@@ -19,7 +19,8 @@ module.exports = {
     format: [
       'progress',
       'html:reports/cucumber-report.html',
-      'json:reports/cucumber-report.json'
+      'json:reports/cucumber-report.json',
+      "junit:reports/junit-ui.xml"
     ],
 
     publishQuiet: true

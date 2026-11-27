@@ -1,0 +1,101 @@
+{
+    "testCaseId": "ACC-API-006",
+    "testCaseName": "Generate Account Statement",
+    "priority": "P1",
+    "testType": "Functional",
+ 
+    "request": {
+        "method": "GET",
+        "endpoint": "/accounts/1/statement",
+        "headers": {
+            "Authorization": "Bearer <REDACTED>",
+            "Accept": "application/json"
+        },
+        "payload": null
+    },
+ 
+    "expectedResponse": {
+        "statusCode": 200,
+        "body": {
+            "accountId": 1,
+            "items": [
+                {
+                    "id": 4,
+                    "sender_account_id": 2,
+                    "recipient_account_id": 1,
+                    "amount": 5000,
+                    "status": "pending",
+                    "created_at": "2026-11-12T08:42:50.402Z"
+                },
+                {
+                    "id": 3,
+                    "sender_account_id": 1,
+                    "recipient_account_id": 3,
+                    "amount": 15000,
+                    "status": "rejected",
+                    "created_at": "2026-11-12T08:39:50.402Z"
+                },
+                {
+                    "id": 2,
+                    "sender_account_id": 1,
+                    "recipient_account_id": 2,
+                    "amount": 100,
+                    "status": "pending",
+                    "created_at": "2026-11-12T08:34:50.402Z"
+                },
+                {
+                    "id": 1,
+                    "sender_account_id": 1,
+                    "recipient_account_id": 2,
+                    "amount": 250,
+                    "status": "completed",
+                    "created_at": "2026-11-12T08:14:50.402Z"
+                }
+            ]
+        }
+    },
+ 
+    "actualResponse": {
+        "statusCode": 200,
+        "body": {
+            "accountId": 1,
+            "items": [
+                {
+                    "id": 4,
+                    "sender_account_id": 2,
+                    "recipient_account_id": 1,
+                    "amount": 5000,
+                    "status": "pending",
+                    "created_at": "2026-11-12T08:42:50.402Z"
+                },
+                {
+                    "id": 3,
+                    "sender_account_id": 1,
+                    "recipient_account_id": 3,
+                    "amount": 15000,
+                    "status": "rejected",
+                    "created_at": "2026-11-12T08:39:50.402Z"
+                },
+                {
+                    "id": 2,
+                    "sender_account_id": 1,
+                    "recipient_account_id": 2,
+                    "amount": 100,
+                    "status": "pending",
+                    "created_at": "2026-11-12T08:34:50.402Z"
+                },
+                {
+                    "id": 1,
+                    "sender_account_id": 1,
+                    "recipient_account_id": 2,
+                    "amount": 250,
+                    "status": "completed",
+                    "created_at": "2026-11-12T08:14:50.402Z"
+                }
+            ]
+        }
+    },
+ 
+    "testResult": "PASS"
+
+}

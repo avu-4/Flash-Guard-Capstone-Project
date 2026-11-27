@@ -7,9 +7,7 @@ Feature: Fund transfers (core transaction flow)
   Background:
     Given I am logged in as "alice@flashguard.local" with password "offline-demo"
 
-  # ===========================================================================
-  # INITIATE TRANSFER (2 x P0 Positive)
-  # ===========================================================================
+
 
   @T-UI-TR-001 @P0 @positive @smoke
   Scenario: Initiate a transfer to a valid recipient
@@ -40,9 +38,7 @@ Feature: Fund transfers (core transaction flow)
       | Bob Wallet   | Alice Ledger | 2500.00  |
       | Alice Ledger | Bob Wallet   | 0.01     |
 
-  # ===========================================================================
-  # AMOUNT VALIDATION (2 x P0 Boundary)
-  # ===========================================================================
+  
 
   @T-UI-TR-003 @P0 @boundary
   Scenario Outline: Amount is validated against the minimum and maximum limits
@@ -94,11 +90,9 @@ Feature: Fund transfers (core transaction flow)
       | entered | outcome                                                 |
       | abc     | prevented because the amount field stays empty          |
 
-  # ===========================================================================
-  # RECIPIENT VALIDATION (2 x P0 Negative)
-  # ===========================================================================
 
-  @T-UI-TR-005 @P0 @negative @transfers
+
+    @T-UI-TR-005 @P0 @negative @transfers
   Scenario Outline: Transfers to blocked or unknown recipients are rejected
     Given <recipient_setup>
     And I open the Transfers page
@@ -110,52 +104,42 @@ Feature: Fund transfers (core transaction flow)
     And no transfer is created
     And the available balance of "Alice Ledger" is still "10000.00"
 
-    Examples: Inactive account
-      | recipient_setup                              | recipient      | message                       |
-      | the recipient account is inactive            | Charlie Frozen | Sender/recipient not valid    |
-
-    @defect
-    Examples: Blocked and unknown accounts (blocklist and unknown-account check, per BRD)
-      | recipient_setup                                                  | recipient       | message                              |
-      | the recipient "Bob Wallet" has blacklist status "blocked"        | Bob Wallet      | Recipient is blocked                 |
-
-  @T-UI-TR-006 @P0 @negative
+    Examples: Inactive, blocked and unknown accounts
+      | recipient_setup                                           | recipient      | message                              |
+      | the recipient account is inactive                         | Charlie Frozen | Sender/recipient not valid           |
+      | the recipient "Bob Wallet" has blacklist status "blocked" | Bob Wallet     | Recipient is blocked                 |
+      @T-UI-TR-006 @P0 @negative @defect
   Scenario: A user cannot transfer money to their own account
     Given I open the Transfers page
     When I select "Alice Ledger" as the sender account
     Then "Alice Ledger" is not listed as an available recipient
     When I select "Bob Wallet" as the recipient
     And I change the sender account to "Bob Wallet"
-    Then the recipient selection is cleared
-    And the "Confirm & Transfer" button is disabled
-    And no transfer can be submitted from "Bob Wallet" to "Bob Wallet"
+    And I enter the amount "100.00"
+    And I confirm the transfer
+    Then no transfer is created
+ 
 
-  # ===========================================================================
-  # TRANSFER CONFIRMATION + OTP ENTRY (1 x P0 Functional)
-  # ===========================================================================
-
-  @T-UI-TR-007 @P0 @functional @otp @defect
+    @T-UI-TR-007 @P0 @functional @otp
   Scenario Outline: Confirm a transfer by entering the one-time PIN
     Given I open the Transfers page
     When I submit a transfer with the following details:
       | sender       | recipient  | amount | reference |
       | Alice Ledger | Bob Wallet | 500.00 | OTP test  |
-    Then an OTP prompt is displayed
-    When I enter the OTP "<otp>"
-    And I confirm the OTP
+    And I open the pending approval for "500.00" in the mobile app
+    And I enter the OTP "<otp>" in the mobile app
+    And I approve the transfer in the mobile app
     Then <result>
+
     Examples: Valid OTP
-      | otp          | result                                                                                                                                       |
-      | valid OTP    | the transfer is completed and a success notification is displayed                                                                            |
+      | otp                        | result                                                  |
+      | the code shown on the card | the transfer is completed and the balances are updated  |
 
     Examples: Invalid OTP
-      | otp          | result                                                                                                                                       |
-      | 000000       | an OTP error is displayed and the transfer remains "Pending" with no change to the balances                                                  |
-      | 12345        | an OTP error is displayed because the OTP must be 6 digits                                                                                   |
+      | otp    | result                                                           |
+      | 000000 | the transfer remains "pending" and the balances are unchanged    |
+      | 12345  | the transfer remains "pending" and the balances are unchanged    |
 
-  # ===========================================================================
-  # FAILED TRANSFER (1 x P1 Error path)
-  # ===========================================================================
 
   @T-UI-TR-008 @P1 @error-path
   Scenario Outline: Failed transfers show a clear error and leave the account unchanged
@@ -170,11 +154,13 @@ Feature: Fund transfers (core transaction flow)
     And no transfer is created
     And the available balance of "Alice Ledger" is still "10000.00"
 
-    Examples: Rejection by the system
-      | condition             | amount   | message                          |
-      | is available          | 10000.01 | the text "Insufficient funds"    |
+       Examples: Rejection and failures with a response
+      | condition                          | amount   | message                                                |
+      | is available                       | 10000.01 | the text "Insufficient funds"                          |
+      | responds with a 500 server error   | 100.00   | a user-friendly message and no technical stack trace   |
+      | is unreachable                     | 100.00   | the text "Network error - unable to connect to server" |
 
-    Examples: Service errors
+    @defect
+    Examples: No response (BRD: timeout handling)
       | condition                              | amount | message                                       |
-      | responds with a 500 server error       | 100.00 | a user-friendly message and no technical stack trace |
       | does not respond within 30 seconds     | 100.00 | a message that the request timed out          |

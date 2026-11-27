@@ -1,0 +1,27 @@
+{
+    "testCaseId": "AUTH-API-005",
+    "testCaseName": "Logout and invalidate session",
+    "request": {
+        "method": "POST",
+        "endpoint": "/auth/logout",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "payload": {
+            "email": "alice@flashguard.local",
+            "password": "offline-demo"
+        }
+    },
+    "expectedResponse": {
+        "statusCode": [200, 204],
+        "body": {
+            "token": "non-empty value",
+            "user": {
+                "id": 1,
+                "email": "alice@flashguard.local",
+                "full_name": "Alice Ledger",
+                "is_active": true
+            } 
+        }
+    }
+}

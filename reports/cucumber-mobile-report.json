@@ -1,0 +1,97 @@
+[
+  {
+    "description": "  As a FlashGuard user\n  I want to view my account balance and transaction history\n  So that I can monitor my financial activity",
+    "elements": [
+      {
+        "description": "",
+        "id": "mobile-balance-and-transaction-history;export-or-share-a-transaction-screenshot",
+        "keyword": "Scenario",
+        "line": 30,
+        "name": "Export or share a transaction screenshot",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 9104078400
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 776216100
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 31,
+            "name": "I am on the History screen",
+            "match": {
+              "location": "tests\\mobile\\steps\\mobile-balance-history.steps.ts:191"
+            }
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 1735807100,
+              "error_message": "AssertionError [ERR_ASSERTION]: No screenshot export or sharing option is available\n    + expected - actual\n\n    -false\n    +true\n\n    at MobileWorld.<anonymous> (C:\\Users\\Avumile\\Desktop\\Flash-Projects\\FlashGuard\\Flash-Guard-Capstone-Project\\tests\\mobile\\steps\\mobile-balance-history.steps.ts:332:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 32,
+            "name": "I select the option to export or share a transaction screenshot",
+            "match": {
+              "location": "tests\\mobile\\steps\\mobile-balance-history.steps.ts:304"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 33,
+            "name": "the transaction screenshot should be available for sharing",
+            "match": {
+              "location": "tests\\mobile\\steps\\mobile-balance-history.steps.ts:339"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 862259100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@mobile",
+            "line": 29
+          },
+          {
+            "name": "@history",
+            "line": 29
+          },
+          {
+            "name": "@P0",
+            "line": 29
+          },
+          {
+            "name": "@defect",
+            "line": 29
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "mobile-balance-and-transaction-history",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Mobile Balance and Transaction History",
+    "tags": [],
+    "uri": "tests\\mobile\\features\\mobile-balance-history.feature"
+  }
+]

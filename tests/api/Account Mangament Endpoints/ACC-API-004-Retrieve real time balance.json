@@ -1,0 +1,19 @@
+{
+    "testCaseId": "AUTH-API-001",
+    "testCaseName": "Retrieve real time balance",
+    "request": {
+        "method": "GET",
+        "endpoint": "/account/{{user_a_accountid}}/balance",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "payload": null
+    },
+    "expectedResponse": {
+        "statusCode": 200,
+        "body": {
+            "id": 1,
+            "balance": 10000
+        }
+    }
+}

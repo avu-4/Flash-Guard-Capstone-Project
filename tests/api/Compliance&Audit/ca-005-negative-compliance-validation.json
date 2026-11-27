@@ -1,0 +1,14 @@
+[
+    {
+        "method" : "POST",
+        "url" : "http://localhost:4000/compliance-checks/validate",
+        "amount": "abc"
+    },
+
+    {   
+        "status code" : 200,
+        "flagged": false,
+        "rule": null,
+        "message": "Compliant"
+    }
+]
