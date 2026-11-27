@@ -16,3 +16,6 @@ node_modules/
 
 # JetBrains IDE settings
 .idea/
+
+# Local mobile test environment
+mobile_testing.env
