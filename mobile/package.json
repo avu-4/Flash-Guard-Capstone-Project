@@ -1,0 +1,40 @@
+{
+  "name": "flashguard-mobile-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "e2e:typecheck": "tsc -p e2e/tsconfig.json --noEmit",
+    "wdio": "wdio run ./wdio.conf.ts"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~6.1.2",
+    "expo": "~54.0.33",
+    "expo-camera": "~17.0.10",
+    "expo-face-detector": "^13.0.2",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-web": "^0.21.0"
+  },
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^26.6.6",
+    "@wdio/cli": "^10.1.0",
+    "@wdio/cucumber-framework": "^10.1.0",
+    "@wdio/globals": "^10.2.0",
+    "@wdio/local-runner": "^10.2.0",
+    "@wdio/mocha-framework": "^10.2.0",
+    "@wdio/spec-reporter": "^10.2.0",
+    "@wdio/types": "^10.1.0",
+    "expect-webdriverio": "^8.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.8.3",
+    "webdriverio": "^10.1.0"
+  }
+}

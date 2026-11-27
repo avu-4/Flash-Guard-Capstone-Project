@@ -1,0 +1,45 @@
+﻿
+name: FlashGuard CI
+
+on:
+  push:
+    branches:
+      - qa-integration
+      - main
+
+  pull_request:
+    branches:
+      - qa-integration
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Project Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript validation
+        run: npx tsc --noEmit
+
+      - name: Cucumber dry-run validation
+        env:
+          TEST_USER_A_EMAIL: ci-validation-a@example.invalid
+          TEST_USER_A_PASSWORD: ci-placeholder
+          TEST_USER_B_EMAIL: ci-validation-b@example.invalid
+          TEST_USER_B_PASSWORD: ci-placeholder
+        run: npx cucumber-js --dry-run

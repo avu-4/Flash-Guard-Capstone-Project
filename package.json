@@ -1,14 +1,19 @@
 {
   "name": "flash-guard-capstone-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Flash-Guard FinTech QA Automation Framework",
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js",
-    "test:baseline": "cucumber-js --tags \"not @defect\"",
-    "test:smoke": "cucumber-js --tags @smoke",
-    "test:positive": "cucumber-js --tags @positive",
-    "test:boundary" : "cucumber-js --tags @boundary"
+    "test:ui": "cucumber-js",
+    "test:smoke": "cucumber-js --tags '@smoke'",
+    "test:ui:smoke": "cucumber-js --tags '@smoke'",
+    "test:ui:auth": "cucumber-js --tags '@authentication'",
+    "test:ui:negative": "cucumber-js --tags '@negative'",
+    "test:ui:transfers": "cucumber-js --tags '@transfers'",
+    "test:baseline": "cucumber-js --tags 'not @defect'",
+    "test:positive": "cucumber-js --tags '@positive'",
+    "test:boundary": "cucumber-js --tags '@boundary'"
   },
   "repository": {
     "type": "git",
@@ -17,7 +22,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/avu-4/Flash-Guard-Capstone-Project/issues"
   },
@@ -26,13 +30,19 @@
     "@cucumber/cucumber": "^13.3.0",
     "@playwright/test": "^1.64.1",
     "@types/mssql": "^12.3.0",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
+    "appium": "^4.0.0",
+    "appium-uiautomator2-driver": "^10.0.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.23.15",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "webdriverio": "^10.1.0"
   },
   "dependencies": {
-    "dotenv": "^18.0.9",
+    "dotenv": "^18.0.10",
     "mssql": "^12.7.13"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }

@@ -1,0 +1,278 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "transfer-lifecycle-diagnostic;verify-pending-transfer-across-web-ui,-api-and-database",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Verify pending transfer across Web UI, API and Database",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 183923199
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3775870299
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "the FlashGuard web application is available",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:39"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 204428399
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "the backend API is available",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:53"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 319935800
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "the database connection is available",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:71"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 601801700
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "the sender and recipient test accounts exist",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:85"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 277204999
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "the user logs in via the Web UI",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:105"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 80796400
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the Web Dashboard should be displayed",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:132"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1162400
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "the authentication API request should succeed",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:144"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 374864700
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 15,
+            "name": "the sender opening balance is recorded",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:158"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 292860400
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "the recipient opening balance is recorded",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:171"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 169474699
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 18,
+            "name": "the user selects the transfer option",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:186"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 44468300
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "the user enters a valid recipient",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:194"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 23182099
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "the user enters a transfer amount of \"100.00\"",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:200"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 14381099
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 22,
+            "name": "the transfer pre-validation API should succeed",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:206"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 157163099
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 24,
+            "name": "the user confirms the transfer",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:235"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 9717000
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 26,
+            "name": "the transaction should be created successfully",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:269"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1209800
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 27,
+            "name": "the transaction ID should be recorded",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:279"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 314709100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "the database transaction status should be \"pending\"",
+            "match": {
+              "location": "tests\\integration\\steps\\complete-transfer-lifecycle.steps.ts:292"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 22216399
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@P0",
+            "line": 3
+          },
+          {
+            "name": "@Integration",
+            "line": 3
+          },
+          {
+            "name": "@Diagnostic",
+            "line": 3
+          },
+          {
+            "name": "@TC-E2E-DIAG-001",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "transfer-lifecycle-diagnostic",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Transfer Lifecycle Diagnostic",
+    "tags": [],
+    "uri": "tests\\integration\\features\\transfer-diagnostic.feature"
+  }
+]

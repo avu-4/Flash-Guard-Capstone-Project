@@ -1,0 +1,12 @@
+{
+  "name": "flashguard-mobile-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Isolated FlashGuard mobile Appium tests",
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.3.0",
+    "dotenv": "^18.0.10",
+    "tsx": "^4.23.15",
+    "webdriverio": "10.1.0"
+  }
+}

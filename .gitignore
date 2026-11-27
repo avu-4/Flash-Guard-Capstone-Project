@@ -1,4 +1,7 @@
-
+# Cucumber generated reports
+reports/cucumber-report.html
+reports/cucumber-report.json
+reports/traces/
 # Playwright
 node_modules/
 /test-results/
@@ -6,3 +9,13 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+.env
+# Word temporary files
+~$*
+~WRL*.tmp
+
+# JetBrains IDE settings
+.idea/
+
+# Local mobile test environment
+mobile_testing.env

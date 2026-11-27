@@ -1,8 +1,5 @@
-import { World, setWorldConstructor } from "@cucumber/cucumber";
-import { BrowserContext, Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
-export class FlashGuardWorld extends World {
-    context! : BrowserContext;
-    page! : Page;  
+export class FlashGuardWorld {
+  page!: Page;
 }
-setWorldConstructor(FlashGuardWorld);

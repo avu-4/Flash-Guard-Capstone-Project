@@ -1,0 +1,23 @@
+{
+    "testCaseId": "AUTH-API-004",
+    "testCaseName": "Register with an existing email",
+    "request": {
+        "method": "POST",
+        "endpoint": "/auth/register",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "payload": {
+            "email": "Dikela@flashguard.local",
+            "fullName": "Dikela Mpatho",
+            "password": "offline-demo"
+        }
+    },
+    "expectedResponse": {
+        "statusCode": 409,
+        "body": {
+            "message": "Email already exists"
+            
+        }
+    }
+}

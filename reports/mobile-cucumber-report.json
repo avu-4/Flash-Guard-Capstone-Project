@@ -1,0 +1,115 @@
+[
+  {
+    "description": "  As a registered FlashGuard user\n  I want to authenticate using my credentials\n  So that I can securely access my account",
+    "elements": [
+      {
+        "description": "",
+        "id": "flashguard-mobile-authentication;tc-mob-auth-001---successful-login-using-valid-email-and-password",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "TC-MOB-AUTH-001 - Successful login using valid email and password",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 11984954100
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 50626953300,
+              "error_message": "Error: Element was not visible: //*[@text=\"Welcome Back\"]\n    at file:///C:/Users/Asemahle/Desktop/FlashGuard_Testing_v2_v2/tests/mobile/node_modules/webdriverio/build/node.js:9056:27\n    at async invokeElementCommand (file:///C:/Users/Asemahle/Desktop/FlashGuard_Testing_v2_v2/tests/mobile/node_modules/webdriverio/build/node.js:16375:20)\n    at async Element.wrapCommandFn (file:///C:/Users/Asemahle/Desktop/FlashGuard_Testing_v2_v2/tests/mobile/node_modules/@wdio/utils/build/index.js:1422:23)\n    at async invokeElementCommand (file:///C:/Users/Asemahle/Desktop/FlashGuard_Testing_v2_v2/tests/mobile/node_modules/webdriverio/build/node.js:16375:20)\n    at async Element.wrapCommandFn (file:///C:/Users/Asemahle/Desktop/FlashGuard_Testing_v2_v2/tests/mobile/node_modules/@wdio/utils/build/index.js:1422:23)\n    at async LoginPage.isVisible (C:\\Users\\Asemahle\\Desktop\\FlashGuard_Testing_v2_v2\\tests\\mobile\\auth_pages\\LoginPage.ts:50:5)\n    at async LoginPage.verifyLoginScreen (C:\\Users\\Asemahle\\Desktop\\FlashGuard_Testing_v2_v2\\tests\\mobile\\auth_pages\\LoginPage.ts:69:7)\n    at async MobileWorld.<anonymous> (C:\\Users\\Asemahle\\Desktop\\FlashGuard_Testing_v2_v2\\tests\\mobile\\auth_steps\\authentication.steps.ts:36:5)"
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 11,
+            "name": "the mobile login screen is displayed",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:31"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 12,
+            "name": "the user enters valid credentials",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:41"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "the user taps the sign in button",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:73"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "the dashboard should be displayed",
+            "match": {
+              "location": "tests\\mobile\\auth_steps\\authentication.steps.ts:83"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3131564600
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@authentication",
+            "line": 1
+          },
+          {
+            "name": "@P0",
+            "line": 9
+          },
+          {
+            "name": "@positive",
+            "line": 9
+          },
+          {
+            "name": "@TC_MOB_AUTH_001",
+            "line": 9
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "flashguard-mobile-authentication",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "FlashGuard mobile authentication",
+    "tags": [
+      {
+        "name": "@authentication",
+        "line": 1
+      }
+    ],
+    "uri": "tests\\mobile\\features\\authentication.feature"
+  }
+]

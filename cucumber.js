@@ -1,12 +1,47 @@
+
 module.exports = {
   default: {
-    paths: ["tests/ui/feature/**/*.feature"],
-    requireModule: ["tsx/cjs"],
-    require: [
-      "tests/ui/world/**/*.ts",
-      "tests/ui/hooks/**/*.ts",
-      "tests/ui/steps/**/*.ts",
+    paths: [
+      'tests/ui/features/**/*.feature',
+      'tests/ui/feature/**/*.feature'
     ],
-    format: ["progress-bar", "html:reports/cucumber-report.html"],
+
+    requireModule: [
+      'dotenv/config',
+      'tsx/cjs'
+    ],
+
+    require: [
+      'src/support/**/*.ts',
+      'tests/ui/steps/**/*.ts',
+      'tests/ui/hooks/**/*.ts'
+    ],
+
+    format: [
+      'progress',
+      'html:reports/cucumber-report.html',
+      'json:reports/cucumber-report.json',
+      "junit:reports/junit-ui.xml"
+    ],
+
+    publishQuiet: true
   },
+
+  mobile: {
+    paths: [
+      'tests/mobile/mobile-dashboard.feature'
+    ],
+
+    requireModule: [
+      'dotenv/config',
+      'tsx/cjs'
+    ],
+
+    require: [
+      'tests/mobile/mobile-driver.ts',
+      'tests/mobile/mobile-dashboard.steps.ts'
+    ],
+
+    format: ['progress']
+  }
 };
