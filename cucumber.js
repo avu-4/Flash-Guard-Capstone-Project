@@ -1,3 +1,4 @@
+
 module.exports = {
   default: {
     paths: [
@@ -24,5 +25,23 @@ module.exports = {
     ],
 
     publishQuiet: true
+  },
+
+  mobile: {
+    paths: [
+      'tests/mobile/mobile-dashboard.feature'
+    ],
+
+    requireModule: [
+      'dotenv/config',
+      'tsx/cjs'
+    ],
+
+    require: [
+      'tests/mobile/mobile-driver.ts',
+      'tests/mobile/mobile-dashboard.steps.ts'
+    ],
+
+    format: ['progress']
   }
 };
