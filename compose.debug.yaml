@@ -1,0 +1,6 @@
+services:
+  flashguardcapstoneproject:
+    image: flashguardcapstoneproject
+    build:
+      context: .
+      dockerfile: ./Dockerfile
