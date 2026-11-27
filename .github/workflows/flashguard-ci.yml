@@ -1,4 +1,5 @@
-﻿name: FlashGuard CI
+﻿
+name: FlashGuard CI
 
 on:
   push:
@@ -35,3 +36,5 @@ jobs:
       - name: TypeScript validation
         run: npx tsc --noEmit
 
+      - name: Cucumber dry-run validation
+        run: npx cucumber-js --dry-run
