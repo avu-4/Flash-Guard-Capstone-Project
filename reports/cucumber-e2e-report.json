@@ -1,0 +1,209 @@
+[
+  {
+    "description": "  As a FlashGuard customer\n  I want to initiate transfers using Web and Mobile\n  So that the system processes transactions correctly across both platforms",
+    "elements": [
+      {
+        "description": "",
+        "id": "concurrent-transfers-between-web-and-mobile;prevent-concurrent-transfers-from-exceeding-the-available-balance",
+        "keyword": "Scenario",
+        "line": 13,
+        "name": "Prevent concurrent transfers from exceeding the available balance",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 26751098000
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8108355299
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 10,
+            "name": "I am logged in to FlashGuard on Web and Mobile",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:356"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 498311000
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 15,
+            "name": "the sender account \"Alice Ledger\" has an available balance of \"6830.00\"",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:378"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 379146099
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 17,
+            "name": "I prepare a transfer of \"4000.00\" from \"Alice Ledger\" to \"Bob Wallet\" on Web",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:397"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 15143300199
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "I prepare a transfer of \"4000.00\" from \"Alice Ledger\" to \"Bob Wallet\" on Mobile",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:419"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 20073868800
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "I submit both prepared transfers concurrently",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:459"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8065167200
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 22,
+            "name": "both transfers should appear as pending in Mobile Transaction History",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:499"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 25916935700
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 24,
+            "name": "I approve both pending transfers using their respective OTPs on Mobile",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:554"
+            }
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 357059400,
+              "error_message": "AssertionError [ERR_ASSERTION]: DEFECT: Both R4,000 transfers were completed even though their combined amount exceeded the available balance\n    + expected - actual\n\n    -false\n    +true\n\n    at E2EWorld.<anonymous> (C:\\Users\\Avumile\\Desktop\\Flash-Projects\\FlashGuard\\Flash-Guard-Capstone-Project\\tests\\e2e\\steps\\concurrent-transfers.steps.ts:598:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 26,
+            "name": "the system should prevent the combined transfers from exceeding the available balance",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:574"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 27,
+            "name": "the sender account balance should not be negative",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:605"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "the transaction records should reflect the correct transfer outcomes",
+            "match": {
+              "location": "tests\\e2e\\steps\\concurrent-transfers.steps.ts:619"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1795145300
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@e2e",
+            "line": 2
+          },
+          {
+            "name": "@concurrent-transfers",
+            "line": 2
+          },
+          {
+            "name": "@FR-003",
+            "line": 2
+          },
+          {
+            "name": "@T-E2E-003",
+            "line": 12
+          },
+          {
+            "name": "@P0",
+            "line": 12
+          },
+          {
+            "name": "@defect",
+            "line": 12
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "concurrent-transfers-between-web-and-mobile",
+    "line": 3,
+    "keyword": "Feature",
+    "name": "Concurrent transfers between Web and Mobile",
+    "tags": [
+      {
+        "name": "@e2e",
+        "line": 2
+      },
+      {
+        "name": "@concurrent-transfers",
+        "line": 2
+      },
+      {
+        "name": "@FR-003",
+        "line": 2
+      }
+    ],
+    "uri": "tests\\e2e\\features\\concurrent-transfers.feature"
+  }
+]
