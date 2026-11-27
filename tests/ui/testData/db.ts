@@ -23,7 +23,7 @@ const seedFile = path.resolve(
 
 export const SEEDED_TRANSACTIONS = 4;
 
-async function withPool<T>(
+export async function withPool<T>(
   fn: (pool: sql.ConnectionPool) => Promise<T>
 ): Promise<T> {
   if (dbConfig.database !== "FlashGuard") {
