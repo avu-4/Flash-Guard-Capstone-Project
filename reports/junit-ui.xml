@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<testsuite name="Cucumber" time="22.751" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-19T07:03:52.894Z">
+  <testcase classname="Fund transfers (core transaction flow)" name="Initiate a transfer to a valid recipient" time="17.67">
+    <system-out><![CDATA[Given I am logged in as "alice@flashguard.local" with password "offline-demo"..passed
+Given I open the Transfers page.............................................passed
+When I submit a transfer with the following details:........................passed
+Then a success notification is displayed confirming the transfer was created..passed
+And the transfer form is cleared............................................passed
+And the transfer "250.00" from "Alice Ledger" to "Bob Wallet" appears in my transaction history with status "Pending"..passed
+And the available balance of "Alice Ledger" is still "10000.00".............passed]]></system-out>
+  </testcase>
+</testsuite>
